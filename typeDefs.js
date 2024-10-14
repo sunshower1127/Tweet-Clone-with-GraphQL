@@ -5,7 +5,11 @@ export default gql`
     id: ID!
     username: String!
     firstName: String!
-    lastName: String
+    lastName: String!
+    """
+    Full name of the user
+    """
+    fullName: String!
   }
 
   type Tweet {
@@ -15,11 +19,15 @@ export default gql`
   }
 
   type Query {
+    allUsers: [User!]!
     allTweets: [Tweet!]!
     tweet(id: ID!): Tweet
   }
 
   type Mutation {
+    """
+    post a tweet
+    """
     postTweet(text: String!, userId: ID!): Tweet!
     deleteTweet(id: ID!): Boolean!
   }
